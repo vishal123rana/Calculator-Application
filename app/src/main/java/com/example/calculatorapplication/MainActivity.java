@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton delete,clear;
     private TextView input_show,output_show,input1_show,output1_show;
     private CommonFunction commonFunction;
+    private DatabaseHelper databaseHelper;
+    private boolean operator = false;
     public void setButton(){
         input1_show = findViewById(R.id.input1_show);
         output1_show = findViewById(R.id.output1_show);
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setButton();
+        databaseHelper = new DatabaseHelper(this);
         commonFunction = new CommonFunction();
         dot.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString(),".")));
         b0.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString(),"0")));
@@ -56,16 +59,55 @@ public class MainActivity extends AppCompatActivity {
         b7.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString(),"7")));
         b8.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString(),"8")));
         b9.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString(),"9")));
-        add.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString()," + ")));
-        minus.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString()," - ")));
-        multiply.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString()," * ")));
-        divide.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString()," / ")));
-        modulus.setOnClickListener(view -> input_show.setText(commonFunction.AddString(input_show.getText().toString()," % ")));
+        add.setOnClickListener(view -> {
+            if(!operator) {
+                input_show.setText(commonFunction.AddString(input_show.getText().toString(), "+"));
+                operator = true;
+            }else{
+                input_show.setText(input_show.getText().toString());
+            }
+        });
+        minus.setOnClickListener(view -> {
+            if(!operator) {
+                input_show.setText(commonFunction.AddString(input_show.getText().toString(),  "-"));
+                operator = true;
+            }else{
+                input_show.setText(input_show.getText().toString());
+            }
+        });
+        multiply.setOnClickListener(view -> {
+            if(!operator) {
+                input_show.setText(commonFunction.AddString(input_show.getText().toString(), "*"));
+                operator = true;
+            }else{
+                input_show.setText(input_show.getText().toString());
+            }
+        });
+        divide.setOnClickListener(view -> {
+            if(!operator) {
+                input_show.setText(commonFunction.AddString(input_show.getText().toString(), "/"));
+                operator = true;
+            }else{
+                input_show.setText(input_show.getText().toString());
+            }
+        });
+        modulus.setOnClickListener(view -> {
+            if(!operator) {
+                input_show.setText(commonFunction.AddString(input_show.getText().toString(), "%"));
+                operator = true;
+            }else{
+                input_show.setText(input_show.getText().toString());
+            }
+        });
         clear.setOnClickListener(view -> {
+            operator = false;
             input1_show.setText(input_show.getText().toString());
             output1_show.setText(output_show.getText().toString());
             input_show.setText("");
             output_show.setText("");
+            if(!input1_show.getText().toString().isEmpty()){
+                final boolean insert = databaseHelper.insert(input1_show.getText().toString(), output1_show.getText().toString());
+            }
         });
         delete.setOnClickListener(view -> {
             String temp = input_show.getText().toString();
@@ -74,46 +116,45 @@ public class MainActivity extends AppCompatActivity {
         });
         result.setOnClickListener(view -> {
             String str = input_show.getText().toString();
-            String[] token;
             String answer=" ";
-            for(int i = 0 ; i < str.length(); i++){
-                if(str.charAt(i)=='+')
-                {
-                    token = str.split(" ");
-                    //       answer = Double.toString(Double.parseDouble(token[0]) + Double.parseDouble(token[2]));
-                    answer = commonFunction.Add(token[0],token[2]);
+            int n = str.length();
+            for(int i = 0 ; i < n; i++) {
+                if(str.charAt(i)=='+'){
+                    answer = commonFunction.Add(str.substring(0,i),str.substring(i+1,n));
                     break;
                 }
                 else if(str.charAt(i)=='-'){
-                    token = str.split(" ");
-                    answer = commonFunction.Minus(token[0],token[2]);
+                    answer = commonFunction.Minus(str.substring(0,i),str.substring(i+1,n));
                     break;
                 }
-                else if(str.charAt(i)=='*')
-                {
-                    token = str.split(" ");
-                    //answer = Double.toString(Double.parseDouble(token[0])*Double.parseDouble(token[2]));
-                    answer = commonFunction.Multiply(token[0],token[2]);
-                    break;
-                }
-                else if(str.charAt(i)=='%'){
-                    token = str.split(" ");
-                    //answer = Double.toString(Integer.parseInt(token[0])%Integer.parseInt(token[2]));
-                    answer = commonFunction.Modulus(token[0],token[2]);
-                    //  System.out.println(answer);
+                else if(str.charAt(i)=='*'){
+                    answer = commonFunction.Multiply(str.substring(0,i),str.substring(i+1,n));
                     break;
                 }
                 else if(str.charAt(i)=='/'){
-                    token = str.split(" ");
-                    answer = commonFunction.Divide(token[0],token[2]);
+                    answer = commonFunction.Divide(str.substring(0,i),str.substring(i+1,n));
+                    break;
+                }
+                else if(str.charAt(i)=='%'){
+                    answer = commonFunction.Modulus(str.substring(0,i),str.substring(i+1,n));
+                    break;
+                }
+                else if(i == n - 1){
+                    answer = "Wrong Input!";
                 }
             }
 //            if(answer.isEmpty()) {
 //                output_show.setText(String.format("= %s", answer));
 //            } else {
-//                output_show.setText(answer);
+//                output_show.setText(answer
+//              );
 //            }
-            output_show.setText(String.format("= %s",answer));
+            if(answer.equals("Wrong Input!")){
+                output_show.setText(answer);
+            }
+            else {
+                output_show.setText(String.format("= %s", answer));
+            }
         });
 
     }

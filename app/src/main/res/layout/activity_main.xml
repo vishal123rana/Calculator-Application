@@ -54,8 +54,6 @@
         android:gravity="end"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:hint="@string/_0"
-        android:textColorHint="#ffffff"
         android:textSize="30sp"
         android:layout_alignParentLeft="true" />
     <GridLayout
