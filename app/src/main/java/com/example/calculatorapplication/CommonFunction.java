@@ -1,5 +1,4 @@
 package com.example.calculatorapplication;
-
 public final class CommonFunction {
     public String Add(String s1, String s2){
         return String.valueOf(Double.sum(Double.parseDouble(s1),Double.parseDouble(s2)));
@@ -25,6 +24,7 @@ public final class CommonFunction {
         return String.valueOf(Double.parseDouble(s1)/Double.parseDouble(s2));
     }
     public String Modulus(String s1,String s2){
+
         return String.valueOf(Double.parseDouble(s1)%Double.parseDouble(s2));
     }
     public String power(String s1,String s2){

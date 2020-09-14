@@ -32,4 +32,9 @@
     <string name="todo">TODO</string>
     <string name="root">root</string>
     <string name="scienctific">Scienctific</string>
+    <string name="his">HIS</string>
+    <string name="view_all_data">View All Data</string>
+    <string name="enter_id">Enter Id</string>
+    <string name="delete_data">Delete Data</string>
+    <string name="back">Back</string>
 </resources>
