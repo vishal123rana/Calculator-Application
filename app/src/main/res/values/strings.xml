@@ -41,4 +41,5 @@
     <string name="ouput">_input</string>
     <string name="id">_id</string>
     <string name="recyclerview">RECYCLERVIEW</string>
+    <string name="output">output</string>
 </resources>
