@@ -37,4 +37,8 @@
     <string name="enter_id">Enter Id</string>
     <string name="delete_data">Delete Data</string>
     <string name="back">Back</string>
+    <string name="input">_input</string>
+    <string name="ouput">_input</string>
+    <string name="id">_id</string>
+    <string name="recyclerview">RECYCLERVIEW</string>
 </resources>
