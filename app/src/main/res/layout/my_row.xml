@@ -16,7 +16,6 @@
             android:layout_height="110dp"
             android:background="#080808"
             android:padding="12dp">
-
             <TextView
                 android:id="@+id/id"
                 android:layout_width="65dp"

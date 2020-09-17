@@ -1,4 +1,7 @@
 package com.example.calculatorapplication;
+
+import java.util.Stack;
+
 public final class CommonFunction {
     public String Add(String s1, String s2){
         return String.valueOf(Double.sum(Double.parseDouble(s1),Double.parseDouble(s2)));
@@ -56,5 +59,71 @@ public final class CommonFunction {
             i++;
         }
         return String.valueOf(ans);
+    }
+    public static int applyOp(char op,int b,int a){
+        switch (op){
+            case '+':
+                return a+b;
+            case '-':
+                return a - b;
+            case '*':
+                return a*b;
+            case '%':
+                return  a%b;
+            case '/':
+                if (b == 0) {
+                    throw new UnsupportedOperationException("Cannot divide by zero");
+                }
+                return a/b;
+        }
+        return 0;
+    }
+    public static boolean hasPrecedence(char op1,char op2){
+        if(op2 == '(' || op2 == ')')
+            return false;
+        if ((op1 == '*' || op1 == '/' || op1 == '%') && (op2 == '+' || op2 == '-'))
+            return false;
+        else
+            return true;
+    }
+    public int evaluate(String s){
+        char[] tokens = s.toCharArray();
+        Stack<Integer> values = new Stack<>();
+        Stack<Character> ops = new Stack<>();
+        int i = 0;
+        while (i < tokens.length)
+        {
+            if (tokens[i] == ' ')
+                continue;
+            if (tokens[i] >= '0' && tokens[i] <= '9')
+            {
+                StringBuilder sbuf = new StringBuilder();
+                // There may be more than one digits in number
+                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9')
+                    sbuf.append(tokens[i++]);
+                values.push(Integer.parseInt(sbuf.toString()));
+                continue;
+            }
+            else if (tokens[i] == '(')
+                ops.push(tokens[i]);
+            else if (tokens[i] == ')')
+            {
+                while (ops.peek() != '(')
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.pop();
+            }
+            else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '%' ||
+                    tokens[i] == '*' || tokens[i] == '/')
+            {
+
+                while (!ops.empty() && hasPrecedence(tokens[i], ops.peek()))
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.push(tokens[i]);
+            }
+            i++;
+        }
+        while (!ops.empty())
+            values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+        return values.pop();
     }
 }
