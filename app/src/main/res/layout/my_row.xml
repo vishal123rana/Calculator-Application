@@ -9,33 +9,18 @@
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:background="#080808"
-        android:layout_height="110dp">
+        android:layout_height="match_parent"
+        android:background="#080808">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="match_parent"
             android:background="#080808"
             android:padding="12dp">
-            <TextView
-                android:id="@+id/id"
-                android:layout_width="65dp"
-                android:layout_height="51dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:padding="8dp"
-                android:text="@string/id"
-                android:textColor="#ffffff"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/output"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
             <TextView
                 android:id="@+id/input"
                 android:layout_width="147dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="108dp"
+                android:layout_marginEnd="4dp"
                 android:text="@string/input"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
@@ -43,13 +28,12 @@
                 app:layout_constraintBottom_toTopOf="@+id/output"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.142"
+                app:layout_constraintVertical_bias="0.695"
                 tools:ignore="MissingConstraints" />
             <TextView
                 android:id="@+id/output"
                 android:layout_width="150dp"
                 android:layout_height="29dp"
-                android:layout_marginEnd="108dp"
                 android:text="@string/output"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
@@ -57,7 +41,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.765"
+                app:layout_constraintVertical_bias="0.953"
                 tools:ignore="MissingConstraints" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

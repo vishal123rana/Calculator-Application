@@ -16,7 +16,7 @@ public class scientificCalculator extends AppCompatActivity {
     private TextView input_show1,input_show2,output_show1,output_show2;
     private DatabaseHelper databaseHelper;
     private static boolean higherOperator = false;
-    private static boolean operator = false;
+ //   private static boolean operator = false;
     private static boolean afterEqual = false;
     private ImageButton clear,backspace;
    // set All Button
@@ -256,45 +256,50 @@ public class scientificCalculator extends AppCompatActivity {
 
         });
         plus.setOnClickListener(view ->{ // add + end of string
-            if(!operator) {
-                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "+"));
-                operator = true;  // disable operator
-            }else{
-                input_show1.setText(input_show1.getText().toString());
-            }
+//            if(!operator) {
+//                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "+"));
+//                operator = true;  // disable operator
+//            }else{
+//                input_show1.setText(input_show1.getText().toString());
+//            }
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"+"));
         });
         minus.setOnClickListener(view -> { // add - end of string
-            if(!operator){
-                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
-                operator = true; // disable operator
-            }else{
-                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
-            }
+//            if(!operator){
+//                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
+//                operator = true; // disable operator
+//            }else{
+//                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
+//            }
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
         });
         multiply.setOnClickListener(view ->{  // add * end of string
-            if(!operator) {
-                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "*"));
-                operator = true;   // disable operator
-            }
-            else{
-                input_show1.setText(input_show1.getText().toString());
-            }
+//            if(!operator) {
+//                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "*"));
+//                operator = true;   // disable operator
+//            }
+//            else{
+//                input_show1.setText(input_show1.getText().toString());
+//            }
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"*"));
         });
         divide.setOnClickListener(view -> {  // add / end of string
-            if(!operator) {
-                input_show1.setText(input_show1.getText().toString());
-                operator = true;// Disable operator
-            }else{
-                input_show1.setText(input_show1.getText().toString());
-            }
+//            if(!operator) {
+//                input_show1.setText(input_show1.getText().toString());
+//                operator = true;// Disable operator
+//            }else{
+//                input_show1.setText(input_show1.getText().toString());
+//            }
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"/"));
         });
         modulus.setOnClickListener(view -> {   // add % end of string
-            if(!operator) {
-                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "%"));
-                operator = true;  // Disable operator
-            }else{
-                input_show1.setText(input_show1.getText().toString());
-            }
+//            if(!operator) {
+//                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(), "%"));
+//                operator = true;  // Disable operator
+//            }else{
+//                input_show1.setText(input_show1.getText().toString());
+//            }
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"%"));
         });
         left.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"(")));  // add ( end of string
         right.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),")"))); // add ) end of string
@@ -450,7 +455,7 @@ public class scientificCalculator extends AppCompatActivity {
         });
         clear.setOnClickListener(view -> {
             /// whenever we click listener that record save on above textView
-            operator = false;
+        //    operator = false;
             input_show2.setText(input_show1.getText().toString());
             output_show2.setText(output_show1.getText().toString());
             input_show1.setText("");
@@ -472,74 +477,132 @@ public class scientificCalculator extends AppCompatActivity {
         });
         equal.setOnClickListener(view -> {
             // actual computation
-            String str = input_show1.getText().toString();   // fetch string from textView
-            int length = str.length();
-            String answer="";  // output string where we store result
-            boolean  checkOperator = false;
-            for(int i = 0 ; i < length; i++){
-                if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/' || str.charAt(i) == '^' || str.charAt(i) == '%') {
-                    checkOperator = true;
-                    break;
-                }
-            }
+            String expression = input_show1.getText().toString();   // fetch string from textView
+            int length = expression.length();
+            String answer = null;  // output string where we store result
+
+//            for(int i = 0 ; i < length; i++){
+//                if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/' || str.charAt(i) == '^' || str.charAt(i) == '%') {
+//                    checkOperator = true;
+//                    break;
+//                }
+//            }
+//            for(int i = 1 ; i < length ; i++){
+//                if (expression.charAt(i-1) == '+' && expression.charAt(i)=='+'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//                else if(expression.charAt(i-1)=='-' && expression.charAt(i)=='-'){
+//                    checkOperator = false;
+//                    break;
+//                }else if(expression.charAt(i-1)=='*' && expression.charAt(i)=='*'){
+//                    checkOperator = false;
+//                    break;
+//                }else if(expression.charAt(i-1)=='%' && expression.charAt(i)=='%'){
+//                    checkOperator = false;
+//                    break;
+//                }else if(expression.charAt(i-1)=='/' && expression.charAt(i)=='/'){
+//                    checkOperator = false;
+//                    break;
+//                }else if(expression.charAt(i-1)=='^' && expression.charAt(i) == '^'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//            }
+            boolean checkOperator = commonFunction.checkDoubleOperator(expression);
             if(!higherOperator && checkOperator) {
-                for (int i = 0; i < length; i++) { // loop for every character
-                   if(str.charAt(i)=='+'){   // if given character is + then parse input string
-                       answer = commonFunction.Add(str.substring(0,i),str.substring(i+1,length)); // and perform Addition operation which implement in commonFunction class
-                       break;
-                   }else if(str.charAt(i)=='-'){ // if given character is - then parse input string
-                       answer = commonFunction.Minus(str.substring(0,i),str.substring(i+1,length)); //perform Minus operation
-                       break;
-                   }else if(str.charAt(i)=='*'){ // if given character is * then parse input string
-                       answer = commonFunction.Multiply(str.substring(0,i),str.substring(i+1,length)); // perform Multiply operation
-                       break;
-                   }else if(str.charAt(i)=='%'){
-                       answer = commonFunction.Modulus(str.substring(0,i),str.substring(i+1,length));
-                       break;
-                   }else if(str.charAt(i)=='/'){
-                       answer = commonFunction.Divide(str.substring(0,i),str.substring(i+1,length));
-                       break;
-                   }
-                   else if(str.charAt(i)=='^'){
-                       answer = commonFunction.power(str.substring(0,i),str.substring(i+1,length));
-                       break;
-                   }
-                }
+                double ans = commonFunction.evaluate(expression);
+                answer = String.valueOf(ans);
+//                for (int i = 0; i < length; i++) { // loop for every character
+//                   if(str.charAt(i)=='+'){   // if given character is + then parse input string
+//                       answer = commonFunction.Add(str.substring(0,i),str.substring(i+1,length)); // and perform Addition operation which implement in commonFunction class
+//                       break;
+//                   }else if(str.charAt(i)=='-'){ // if given character is - then parse input string
+//                       answer = commonFunction.Minus(str.substring(0,i),str.substring(i+1,length)); //perform Minus operation
+//                       break;
+//                   }else if(str.charAt(i)=='*'){ // if given character is * then parse input string
+//                       answer = commonFunction.Multiply(str.substring(0,i),str.substring(i+1,length)); // perform Multiply operation
+//                       break;
+//                   }else if(str.charAt(i)=='%'){
+//                       answer = commonFunction.Modulus(str.substring(0,i),str.substring(i+1,length));
+//                       break;
+//                   }else if(str.charAt(i)=='/'){
+//                       answer = commonFunction.Divide(str.substring(0,i),str.substring(i+1,length));
+//                       break;
+//                   }
+//                   else if(str.charAt(i)=='^'){
+//                       answer = commonFunction.power(str.substring(0,i),str.substring(i+1,length));
+//                       break;
+//                   }
+//                }
             }
             else if(higherOperator){
-                if(str.charAt(length-1)=='!'){
-                    answer = commonFunction.factorial(str.substring(0,length-1));
+                if(expression.charAt(length-1)=='!'){
+                    answer = commonFunction.factorial(expression.substring(0,length-1));
                 }
-                else if(str.substring(0,3).equals("log")){
-                    answer = commonFunction.log(str.substring(4,length-1));
+                else if(expression.substring(0,3).equals("log")){
+                    boolean flag = commonFunction.checkOperator(expression.substring(4,length-1));
+                    if(flag) {
+                        answer = commonFunction.log(String.valueOf(commonFunction.evaluate(expression.substring(4,length-1))));
+                    }else{
+                        answer = commonFunction.log(expression.substring(4,length-1));
+                    }
                 }
-                else if(str.substring(0,2).equals("ln")){
-                    answer = commonFunction.nlog(str.substring(3,length-1));
+                else if(expression.substring(0,2).equals("ln")){
+                    boolean flag = commonFunction.checkOperator(expression.substring(3,length-1));
+                    if(flag){
+                        answer = commonFunction.nlog(String.valueOf(commonFunction.evaluate(expression.substring(3,length-1))));
+                    }
+                    else {
+                        answer = commonFunction.nlog(expression.substring(3, length - 1));
+                    }
                 }
-                else if(str.substring(0,3).equals("sin")){
-                    answer = commonFunction.sin(str.substring(4,length-1));
+                else if(expression.substring(0,3).equals("sin")){
+                    boolean flag = commonFunction.checkOperator(expression.substring(4,length-1));
+                    if(flag) {
+                        answer = commonFunction.sin(String.valueOf(commonFunction.evaluate(expression.substring(4,length-1))));
+                    }else{
+                        answer = commonFunction.sin(expression.substring(4,length-1));
+                    }
                 }
-                else if(str.substring(0,3).equals("cos")){
-                    answer = commonFunction.cos(str.substring(4,length-1));
+                else if(expression.substring(0,3).equals("cos"))
+                {
+                    boolean flag = commonFunction.checkOperator(expression.substring(4,length-1));
+                    if(flag){
+                        answer = commonFunction.cos(String.valueOf(commonFunction.evaluate(expression.substring(4,length-1))));
+                    }else {
+                        answer = commonFunction.cos(expression.substring(4, length - 1));
+                    }
+                }else if(expression.substring(0,4).equals("sqrt")){
+                    boolean flag = commonFunction.checkOperator(expression.substring(5,length-1));
+                    if(flag){
+                        answer = commonFunction.sqrt(String.valueOf(commonFunction.evaluate(expression.substring(5,length-1))));
+                    }else {
+                        answer = commonFunction.sqrt(expression.substring(5, length - 1));
+                    }
                 }
-                else if(str.substring(0,4).equals("sqrt")){
-                    answer = commonFunction.sqrt(str.substring(5,length-1));
-                }
-                else if(str.substring(0,3).equals("exp")){
-                    answer = commonFunction.exponent(str.substring(4,length-1));
+                else if(expression.substring(0,3).equals("exp")){
+                    boolean flag = commonFunction.checkOperator(expression.substring(4,length-1));
+                    if(flag){
+                        answer = commonFunction.exponent(String.valueOf(commonFunction.evaluate(expression.substring(4,length-1))));
+                    }
+                    else {
+                        answer = commonFunction.exponent(expression.substring(4, length - 1));
+                    }
                 }
                 higherOperator = false;
             }
             else{
                 answer = "Wrong Input!";
             }
+            assert answer != null;
             if(answer.equals("Wrong Input!")){
                 output_show1.setText(answer);
             }else {
                 output_show1.setText(String.format("= %s", answer));
             }
             afterEqual = true;
-            operator = false;  // Enable operator
+          //  operator = false;  // Enable operator
         });
         normal.setOnClickListener(view ->{
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
@@ -550,7 +613,6 @@ public class scientificCalculator extends AppCompatActivity {
 //    public void showMessage(String title,String Message){
 //        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //        builder.setCancelable(true);
-//        builder.setTitle(title);
 //        builder.setMessage(Message);
 //        builder.show();
 //    }

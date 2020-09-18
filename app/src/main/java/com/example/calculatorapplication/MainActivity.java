@@ -331,37 +331,37 @@ public class MainActivity extends AppCompatActivity {
             String str = input_show.getText().toString();
             String answer;
             int n = str.length();
-            boolean checkOperator = true;
-//            for(int i = 0 ; i < n ; i++){
+//            for(int i = 0 ; i < n ; i++){  // check opertor present or not
 //                if (str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '%' || str.charAt(i) == '*' || str.charAt(i) == '/') {
 //                    checkOperator = true;
 //                    break;
 //                }
 //            }
-            for(int i = 1 ; i < n ; i++){
-                if(str.charAt(i-1)=='+' && str.charAt(i)=='+'){
-                    checkOperator = false;
-                    break;
-                }
-                if(str.charAt(i-1)=='-' && str.charAt(i)=='-'){
-                    checkOperator = false;
-                    break;
-                }
-                if(str.charAt(i-1)=='*' && str.charAt(i)=='*'){
-                    checkOperator = false;
-                    break;
-                }
-                if(str.charAt(i-1)=='/'&&str.charAt(i)=='/'){
-                    checkOperator = false;
-                    break;
-                }
-                if(str.charAt(i-1)=='%'&&str.charAt(i)=='%'){
-                    checkOperator = false;
-                    break;
-                }
-            }
+//            for(int i = 1 ; i < n ; i++){
+//                if(str.charAt(i-1)=='+' && str.charAt(i)=='+'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//                if(str.charAt(i-1)=='-' && str.charAt(i)=='-'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//                if(str.charAt(i-1)=='*' && str.charAt(i)=='*'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//                if(str.charAt(i-1)=='/'&&str.charAt(i)=='/'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//                if(str.charAt(i-1)=='%'&&str.charAt(i)=='%'){
+//                    checkOperator = false;
+//                    break;
+//                }
+//            }
+            boolean checkOperator = commonFunction.checkDoubleOperator(str);
             if(checkOperator) {
-                int ans = commonFunction.evaluate(str);
+                double ans = commonFunction.evaluate(str);
                 answer = String.valueOf(ans);  // present code
 //                for (int i = 0; i < n; i++) {
 //                    if (str.charAt(i) == '+') {
