@@ -1,12 +1,12 @@
 package com.example.calculatorapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,6 @@ public class RecycleView extends AppCompatActivity {
     //private ArrayList<String> id;
     private ArrayList<String> input,output;
     private DatabaseHelper databaseHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,5 +40,4 @@ public class RecycleView extends AppCompatActivity {
             }
         }
     }
-
 }

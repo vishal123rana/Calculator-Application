@@ -1,13 +1,19 @@
 package com.example.calculatorapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 
 public class scientificCalculator extends AppCompatActivity {
     private CommonFunction commonFunction;
@@ -18,9 +24,11 @@ public class scientificCalculator extends AppCompatActivity {
     private static boolean higherOperator = false;
  //   private static boolean operator = false;
     private static boolean afterEqual = false;
+    private BottomSheetDialog bottomSheetDialog;
     private ImageButton clear,backspace;
    // set All Button
     private void setButton(){
+        bottomSheetDialog = new BottomSheetDialog(this);
         this.normal = findViewById(R.id.normal);
         this.zero = findViewById(R.id.zero1);
         this.one = findViewById(R.id.one1);
@@ -393,8 +401,13 @@ public class scientificCalculator extends AppCompatActivity {
 //
 //            }
   //          showMessage("Data",buffer.toString());
-            Intent intent = new Intent(scientificCalculator.this,History.class);  // switch to third Activity
-            startActivity(intent);
+//            Intent intent = new Intent(scientificCalculator.this,History.class);  // switch to third Activity
+//            startActivity(intent)
+
+            @SuppressLint({"InflateParams", "ResourceType"})
+            View v = LayoutInflater.from(this).inflate(R.layout.bottmsheet,null);
+            bottomSheetDialog.setContentView(v);
+            bottomSheetDialog.show();
         });
         sin.setOnClickListener(view -> {
             if(afterEqual) {

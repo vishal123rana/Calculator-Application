@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 public class MainActivity extends AppCompatActivity {
     private Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,add,minus,multiply,divide,result,dot,modulus;
     private ImageButton delete,clear;
@@ -17,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean afterEqual = false;
     private CommonFunction commonFunction;
     private DatabaseHelper databaseHelper;
-    private boolean operator = false;
+    private BottomSheetDialog bottomSheetDialog;
+ //   private boolean operator = false;
     public void setButton(){
         input1_show = findViewById(R.id.input1_show);
         output1_show = findViewById(R.id.output1_show);

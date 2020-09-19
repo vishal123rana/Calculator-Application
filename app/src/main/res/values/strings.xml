@@ -42,4 +42,6 @@
     <string name="id">_id</string>
     <string name="recyclerview">RECYCLERVIEW</string>
     <string name="output">output</string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
 </resources>
