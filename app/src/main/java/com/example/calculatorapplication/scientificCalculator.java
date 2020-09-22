@@ -1,19 +1,16 @@
 package com.example.calculatorapplication;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
+import androidx.fragment.app.FragmentActivity;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class scientificCalculator extends AppCompatActivity {
     private CommonFunction commonFunction;
@@ -24,11 +21,9 @@ public class scientificCalculator extends AppCompatActivity {
     private static boolean higherOperator = false;
  //   private static boolean operator = false;
     private static boolean afterEqual = false;
-    private BottomSheetDialog bottomSheetDialog;
     private ImageButton clear,backspace;
    // set All Button
     private void setButton(){
-        bottomSheetDialog = new BottomSheetDialog(this);
         this.normal = findViewById(R.id.normal);
         this.zero = findViewById(R.id.zero1);
         this.one = findViewById(R.id.one1);
@@ -37,7 +32,6 @@ public class scientificCalculator extends AppCompatActivity {
         this.four = findViewById(R.id.four1);
         this.five = findViewById(R.id.five1);
         this.six = findViewById(R.id.six1);
-        
         this.seven = findViewById(R.id.seven1);
         this.eight = findViewById(R.id.eight1);
         this.nine = findViewById(R.id.nine1);
@@ -401,13 +395,16 @@ public class scientificCalculator extends AppCompatActivity {
 //
 //            }
   //          showMessage("Data",buffer.toString());
-//            Intent intent = new Intent(scientificCalculator.this,History.class);  // switch to third Activity
-//            startActivity(intent)
-
-            @SuppressLint({"InflateParams", "ResourceType"})
-            View v = LayoutInflater.from(this).inflate(R.layout.bottmsheet,null);
-            bottomSheetDialog.setContentView(v);
-            bottomSheetDialog.show();
+//            Intent intent = new Intent(scientificCalculator.this,RecycleView.class);  // switch to third Activity
+//            startActivity(intent);
+//
+//            @SuppressLint({"InflateParams", "ResourceType"})
+//            View v = LayoutInflater.from(this).inflate(R.layout.activity_recycle_view,null);
+//            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+//            bottomSheetDialog.setContentView(v);
+//            bottomSheetDialog.show();
+          BottomSheetDialogFragment bottomSheetDialogFragment = new BottomSheetDialog2();
+          bottomSheetDialogFragment.show(((FragmentActivity)this).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
         });
         sin.setOnClickListener(view -> {
             if(afterEqual) {
@@ -622,6 +619,15 @@ public class scientificCalculator extends AppCompatActivity {
             startActivity(intent);
         });
 
+    }
+
+    public void viewHistory(View view) {
+        Intent intent = new Intent(getApplicationContext(),RecycleView.class);
+        startActivity(intent);
+    }
+
+    public void Exit(View view) {
+       finish();
     }
 //    public void showMessage(String title,String Message){
 //        AlertDialog.Builder builder = new AlertDialog.Builder(this);

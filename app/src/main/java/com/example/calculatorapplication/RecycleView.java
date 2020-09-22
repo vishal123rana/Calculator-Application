@@ -15,6 +15,7 @@ public class RecycleView extends AppCompatActivity {
     //private ArrayList<String> id;
     private ArrayList<String> input,output;
     private DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class RecycleView extends AppCompatActivity {
         output = new ArrayList<>();
         databaseHelper = new DatabaseHelper(this);
         displayData();
-        CustomAdapter customAdapter = new CustomAdapter(RecycleView.this,input, output);
+        CustomAdapter customAdapter = new CustomAdapter(RecycleView.this, input, output);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(RecycleView.this));
     }
