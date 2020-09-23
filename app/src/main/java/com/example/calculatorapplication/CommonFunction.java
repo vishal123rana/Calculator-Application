@@ -6,8 +6,8 @@ public final class CommonFunction {
     public String Add(String s1, String s2){
         return String.valueOf(Double.sum(Double.parseDouble(s1),Double.parseDouble(s2)));
     }
-//    public String Multiply(String s1,String s2){
-//        return String.valueOf(Double.parseDouble(s1) * Double.parseDouble(s2));
+    //    public String Multiply(String s1,String s2){
+////        return String.valueOf(Double.parseDouble(s1) * Double.parseDouble(s2));
 //    }
     public String AddString(String left,String right){
         return left.concat(right);
@@ -64,23 +64,29 @@ public final class CommonFunction {
     public boolean checkDoubleOperator(String expression){
         int n = expression.length();
         boolean check = true;
-        for(int i = 1 ; i < n; i++){
-            if(expression.charAt(i-1)=='+' && expression.charAt(i)=='+'){
+        StringBuilder temp = new StringBuilder();
+        for(int i = 0 ; i < n ; i++){   /// remove spaces
+            if(expression.charAt(i) != ' '){
+                temp.append(expression.charAt(i));
+            }
+        }
+        for(int i = 1 ; i < temp.length(); i++){
+            if(temp.charAt(i-1)=='+' && temp.charAt(i)=='+'){
                 check = false;
                 break;
             }
-            else if(expression.charAt(i-1)=='-' && expression.charAt(i)=='-'){
+            else if(temp.charAt(i-1)=='-' && temp.charAt(i)=='-'){
                 check = false;
                 break;
             }
-            else if(expression.charAt(i-1)=='*' && expression.charAt(i)=='*'){
+            else if(temp.charAt(i-1)=='*' && temp.charAt(i)=='*'){
                 check = false;
                 break;
             }
-            else if(expression.charAt(i-1)=='/' && expression.charAt(i)=='/'){
+            else if(temp.charAt(i-1)=='/' && temp.charAt(i)=='/'){
                 check = false;
                 break;
-            }else if(expression.charAt(i-1)=='%' && expression.charAt(i)=='%'){
+            }else if(temp.charAt(i-1)=='%' && temp.charAt(i)=='%'){
                 check = false;
                 break;
             }
@@ -90,7 +96,7 @@ public final class CommonFunction {
     public boolean checkOperator(String s){
         int n = s.length();
         for(int i = 0 ; i < n; i++)
-            if(s.charAt(i)=='+'||s.charAt(i)=='-'||s.charAt(i)=='*'||s.charAt(i)=='^'||s.charAt(i)=='%'||s.charAt(i)=='/')
+            if( s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '^' || s.charAt(i) == '%' || s.charAt(i) == '/')
                 return true;
         return false;
     }
@@ -127,9 +133,11 @@ public final class CommonFunction {
         int i = 0;
         while (i < tokens.length)
         {
-            if (tokens[i] == ' ')
+            if (tokens[i] == ' ') {
+                i++;
                 continue;
-            if (tokens[i] >= '0' && tokens[i] <= '9')
+            }
+            else if (tokens[i] >= '0' && tokens[i] <= '9')
             {
                 StringBuilder sbuf = new StringBuilder();
                 // There may be more than one digits in number

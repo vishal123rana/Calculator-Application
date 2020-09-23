@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 ////            }else{
 ////                input_show.setText(input_show.getText().toString());
 ////            }
-            input_show.setText(commonFunction.AddString(input_show.getText().toString(), "+"));
+            input_show.setText(commonFunction.AddString(input_show.getText().toString(), " + "));
         });
         minus.setOnClickListener(view -> {
 //            if(!operator) {
@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
 //            }else{
 //                input_show.setText(input_show.getText().toString());
 //            }
-            input_show.setText(commonFunction.AddString(input_show.getText().toString(), "-"));
+            input_show.setText(commonFunction.AddString(input_show.getText().toString(), " - "));
         });
         multiply.setOnClickListener(view -> {
 //            if(!operator) {
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
 //            }else{
 //                input_show.setText(input_show.getText().toString());
 //            }
-            input_show.setText(commonFunction.AddString(input_show.getText().toString(), "*"));
+            input_show.setText(commonFunction.AddString(input_show.getText().toString(), " * "));
         });
         divide.setOnClickListener(view -> {
 //            if(!operator) {
@@ -293,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
 //            }else{
 //                input_show.setText(input_show.getText().toString());
 //            }
-            input_show.setText(commonFunction.AddString(input_show.getText().toString(), "/"));  // present code
+            input_show.setText(commonFunction.AddString(input_show.getText().toString(), " / "));  // present code
         });
         modulus.setOnClickListener(view -> {
 //            if(!operator) {
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 //            }else{
 //                input_show.setText(input_show.getText().toString());
 //            }
-            input_show.setText(commonFunction.AddString(input_show.getText().toString(), "%")); //updated
+            input_show.setText(commonFunction.AddString(input_show.getText().toString(), " % ")); //updated
         });
         clear.setOnClickListener(view -> {
             //operator = false;
@@ -326,7 +326,13 @@ public class MainActivity extends AppCompatActivity {
         });
         delete.setOnClickListener(view -> {
             String temp = input_show.getText().toString();
-            temp = temp.substring(0,temp.length()-1);
+            int n = temp.length();
+            if(temp.charAt(n-1)==' '){
+                temp = temp.substring(0,n-2);
+            }
+            else {
+                temp = temp.substring(0, temp.length() - 1);
+            }
             input_show.setText(temp);
         });
         result.setOnClickListener(view -> {

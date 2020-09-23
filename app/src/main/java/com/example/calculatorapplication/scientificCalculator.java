@@ -1,6 +1,4 @@
 package com.example.calculatorapplication;
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -264,7 +262,7 @@ public class scientificCalculator extends AppCompatActivity {
 //            }else{
 //                input_show1.setText(input_show1.getText().toString());
 //            }
-            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"+"));
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," + "));
         });
         minus.setOnClickListener(view -> { // add - end of string
 //            if(!operator){
@@ -273,7 +271,7 @@ public class scientificCalculator extends AppCompatActivity {
 //            }else{
 //                input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
 //            }
-            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"-"));
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," - "));
         });
         multiply.setOnClickListener(view ->{  // add * end of string
 //            if(!operator) {
@@ -283,7 +281,7 @@ public class scientificCalculator extends AppCompatActivity {
 //            else{
 //                input_show1.setText(input_show1.getText().toString());
 //            }
-            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"*"));
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," * "));
         });
         divide.setOnClickListener(view -> {  // add / end of string
 //            if(!operator) {
@@ -292,7 +290,7 @@ public class scientificCalculator extends AppCompatActivity {
 //            }else{
 //                input_show1.setText(input_show1.getText().toString());
 //            }
-            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"/"));
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," / "));
         });
         modulus.setOnClickListener(view -> {   // add % end of string
 //            if(!operator) {
@@ -301,11 +299,11 @@ public class scientificCalculator extends AppCompatActivity {
 //            }else{
 //                input_show1.setText(input_show1.getText().toString());
 //            }
-            input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"%"));
+            input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," % "));
         });
         left.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"(")));  // add ( end of string
         right.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),")"))); // add ) end of string
-        power.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString(),"^")));  // add power operator
+        power.setOnClickListener(view -> input_show1.setText(commonFunction.AddString(input_show1.getText().toString()," ^ ")));  // add power operator
         log.setOnClickListener(view -> {
             if(afterEqual) {
                 input_show2.setText(input_show1.getText().toString());
@@ -482,7 +480,13 @@ public class scientificCalculator extends AppCompatActivity {
         backspace.setOnClickListener(view -> {
             /// delete every last character from TextView
             String temp = input_show1.getText().toString();   // fetch data from textView
-            temp = temp.substring(0,temp.length()-1);    // remove last character from end
+            int n = temp.length();
+            if(temp.charAt(n-1)==' '){
+                temp = temp.substring(0,n-2);
+            }
+            else {
+                temp = temp.substring(0, temp.length() - 1);    // remove last character from end
+            }
             input_show1.setText(temp);    // and then show  on textView
         });
         equal.setOnClickListener(view -> {
