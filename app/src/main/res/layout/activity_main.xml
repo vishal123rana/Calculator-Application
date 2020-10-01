@@ -37,11 +37,10 @@
         android:layout_marginTop="180dp"
         android:fontFamily="sans-serif-black"
         android:textSize="30sp"
-        android:layout_alignParentLeft="true"
         android:hint="@string/_0"
         android:textColorHint="#ffffff"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginLeft="3dp" />
+        />
 
     <TextView
         android:id="@+id/output_show"
@@ -54,10 +53,8 @@
         android:gravity="end"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:hint="@string/_0"
-        android:textColorHint="#ffffff"
         android:textSize="30sp"
-        android:layout_alignParentLeft="true" />
+        />
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -225,16 +222,16 @@
 
         <Button
             android:id="@+id/zero"
-            android:layout_width="100dp"
+            android:layout_width="107dp"
             android:layout_height="wrap_content"
             android:layout_row="4"
             android:layout_column="1"
             android:background="#080808"
             android:text="@string/_0"
-            android:textStyle="bold"
-
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/scientific"
@@ -286,7 +283,6 @@
             android:text="@string/_2"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
-
             />
 
         <Button

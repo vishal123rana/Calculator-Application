@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:accessibilityHeading="false"
     android:background="#080808"
     tools:context=".History">
 
@@ -12,57 +13,60 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="116dp"
         android:text="@string/view_all_data" />
 
     <Button
         android:id="@+id/deleteData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_width="122dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/recycleView"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="386dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="278dp"
+        android:layout_marginEnd="-5dp"
+        android:layout_toEndOf="@+id/editTextNumber"
         android:text="@string/delete_data" />
 
     <EditText
         android:id="@+id/editTextNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_width="161dp"
+        android:layout_height="34dp"
+        android:layout_alignStart="@+id/viewAllData"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="284dp"
-        android:textColor="#ffffff"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="278dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_id"
-        android:textColorHint="#ffffff"
         android:inputType="number"
-        android:autofillHints="" />
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="wrap_content"
+        android:layout_width="344dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/editTextNumber"
+        android:layout_alignEnd="@+id/deleteData"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="61dp"
-        android:layout_marginBottom="145dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="237dp"
         android:text="@string/back" />
 
     <Button
-        android:id="@+id/recuse"
-        android:layout_width="wrap_content"
+        android:id="@+id/recycleView"
+        android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="88dp"
-        android:onClick="RecylerView"
-        android:layout_marginBottom="148dp"
-        android:text="@string/recyclerview"
-        tools:ignore="RelativeOverlap" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginBottom="561dp"
+        android:layout_toEndOf="@+id/viewAllData"
+        android:onClick="recyclerView"
+        android:text="@string/recyclerview" />
 
 
 </RelativeLayout>

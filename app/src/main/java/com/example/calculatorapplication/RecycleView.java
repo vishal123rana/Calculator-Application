@@ -1,18 +1,19 @@
 package com.example.calculatorapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class RecycleView extends AppCompatActivity {
     private RecycleView recycleView;
-    private ArrayList<String> id,input,output;
+    //private ArrayList<String> id;
+    private ArrayList<String> input,output;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -20,12 +21,12 @@ public class RecycleView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycle_view);
         RecyclerView recyclerView = findViewById(R.id.recycleView);
-        id = new ArrayList<>();
+       // id = new ArrayList<>();
         input = new ArrayList<>();
         output = new ArrayList<>();
         databaseHelper = new DatabaseHelper(this);
         displayData();
-        CustomAdapter customAdapter = new CustomAdapter(RecycleView.this, id, input, output);
+        CustomAdapter customAdapter = new CustomAdapter(RecycleView.this, input, output);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(RecycleView.this));
     }
@@ -35,11 +36,9 @@ public class RecycleView extends AppCompatActivity {
             Toast.makeText(this,"No data",Toast.LENGTH_LONG).show();
         }else{
             while(res.moveToNext()){
-                id.add(res.getString(0));
                 input.add(res.getString(1));
                 output.add(res.getString(2));
             }
         }
     }
-
 }
